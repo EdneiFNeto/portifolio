@@ -1,0 +1,266 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+
+  <meta charset="utf-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1, shrink-to-fit=no">
+  <meta name="description" content="">
+  <meta name="author" content="">
+
+  <title>Dev mobile</title>
+
+  <!-- Bootstrap core CSS -->
+  <link href="../vendor/bootstrap/css/bootstrap.min.css" rel="stylesheet">
+
+  <!-- Custom fonts for this template -->
+  <link href="https://fonts.googleapis.com/css?family=Saira+Extra+Condensed:500,700" rel="stylesheet">
+  <link href="https://fonts.googleapis.com/css?family=Muli:400,400i,800,800i" rel="stylesheet">
+  <link href="../vendor/fontawesome-free/css/all.min.css" rel="stylesheet">
+
+  <!-- Custom styles for this template -->
+  <link href="../css/resume.css" rel="stylesheet">
+
+</head>
+
+<body id="page-top">
+
+  <nav class="navbar navbar-expand-lg navbar-dark bg-primary fixed-top" id="sideNav">
+    <a class="navbar-brand js-scroll-trigger" href="../index.html">
+      <span class="d-block d-lg-none">Ednei Freitas Neto</span>
+      <span class="d-none d-lg-block">
+        <img class="img-fluid img-profile rounded-circle mx-auto mb-2" src="../img/foto-perfil.jpg" alt="">
+      </span>
+    </a>
+    <button class="navbar-toggler" type="button" data-toggle="collapse" data-target="#navbarSupportedContent"
+      aria-controls="navbarSupportedContent" aria-expanded="false" aria-label="Toggle navigation">
+      <span class="navbar-toggler-icon"></span>
+    </button>
+    <div class="collapse navbar-collapse" id="navbarSupportedContent">
+      <ul class="navbar-nav">
+        <li class="nav-item">
+          <a class="nav-link js-scroll-trigger" href="#about">Introdução</a>
+        </li>
+        <li class="nav-item">
+          <a class="nav-link js-scroll-trigger" href="#experience">Experiência</a>
+        </li>
+        <li class="nav-item">
+          <a class="nav-link js-scroll-trigger" href="#education">Formação</a>
+        </li>
+        <li class="nav-item">
+          <a class="nav-link js-scroll-trigger" href="#skills">Habilidades</a>
+        </li>
+        <li class="nav-item">
+          <a class="nav-link js-scroll-trigger" href="#interests">Tutorial</a>
+        </li>
+      </ul>
+    </div>
+  </nav>
+
+  <div class="container-fluid p-0">
+
+    <section class="resume-section p-3 p-lg-5 d-flex align-items-center" id="about">
+      <div class="w-100">
+        <h1 class="mb-0">Android LocationManager
+        </h1>
+        <div class="subheading mb-5">Enviando localização do GPS em background ou com App fechado
+        </div>
+
+        <p class="lead mb-5">
+            Nesse tutorial vou criar um app que envia sua localização do GPS com o telefone desligado ou em background. 
+            Tudo vi se comportar de forma bastante simples, 
+            onde teremos  a utilização do <strong>BroadcastReceiver</strong> e um <strong> Service</strong> para auxiliar no desenvolvimento.
+        </p>
+      </div>
+    </section>
+
+    <hr>
+
+    <section class="resume-section p-3 p-lg-5 d-flex justify-content-center" id="experience">
+      <div class="w-100">
+        <h2 class="mb-5">BroadcastReceiver</h2>
+
+        <div class="resume-item d-flex flex-column flex-md-row justify-content-between mb-5">
+          <div class="resume-content">
+            <h3 class="mb-0">Iniciando serviço de broadcast</h3>
+            <p style="text-align: justify">
+                Primeiramente vamos começar com a nossa classe de broadcast, onde ele será responsável por verificar se o boot do telefone foi feito com sucesso e em seguida a classe de serviço vai ser executada.  
+            </p>
+
+            <div class="fundo-codigo">
+                <p>
+                    <span class="public">public class</span> <span class="name-class"> MyBroadcast</span>
+                    <span class="public">extends</span> <span class="name-class"> BroadcastReceiver</span> {<br>
+                </p>
+                <p class="bloque">
+                    <span class="override"> @Override</span><br>
+                    <span class="public">public void</span> <span class="method"> onReceive</span>(Context context, Intent intent) {<br>
+                    <span class="condition bloque1">if</span>(intent.getAction().equalsIgnoreCase(Intent.<span class="constant">ACTION_BOOT_COMPLETED</span>)){<br>
+                    <span class="bloque2">context.startService(<span class="new">new</span> Intent(context, MyService..<span class="class">class</span> ));</span><br>
+                    <span class="bloque1">}</span><br>
+                    <span class="bloque">}</span>
+                </p>
+                }<br>
+            </div>
+          </div>
+        </div>
+      </div>
+    </section>
+
+    <!--service-->
+    <section class="resume-section p-3 p-lg-5 d-flex justify-content-center" id="experience">
+        <div class="w-100">
+            <h2 class="mb-5">Service</h2>
+            <div class="resume-item d-flex flex-column flex-md-row justify-content-between mb-5">
+                <div class="resume-content">
+                    <h3 class="mb-0">Enviado dados usando serviço</h3>
+                    <p style="text-align: justify">
+                        Agora vamos notificar o usuário que o boot completo foi relizado e em seguida vamos
+                        enviar nossa localização do GPS utilizando a classe de serviço, 
+                    </p>
+            
+                    <div class="fundo-codigo">
+                        <span class="public">public class</span> <span class="name-class"> MyService</span>
+                        <span class="public">extends</span> <span class="name-class"> Service</span> {<br>
+
+                        <span class="override"> @Override</span><br>
+                        <span class="public">public IBinder</span> <span class="method"> onBind</span>(Context context) {
+                        <span class="public">return null;</span>}<br>
+
+                        <span class="override"> @Override</span><br>
+                        <span class="public">public void</span> <span class="method"> onCreate</span>() {<br>
+                        <span>MyNotification.pushNotification(getApplicationContext(), "App", "App rodando.");</span><br>
+                        <span class="public">new</span> MyLocation(getApplicationContext());</br>
+
+                        <span class="override"> @Override</span><br>
+                        <span class="public">public void</span> <span class="method"> onDestroy</span>() {
+                        <span class="public">super</span>.onDestroy();}<br>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </section>
+
+    <!-- mylocation-->
+    <section class="resume-section p-3 p-lg-5 d-flex justify-content-center" id="experience">
+            <div class="w-100">
+                <h2 class="mb-5">Location</h2>
+                <div class="resume-item d-flex flex-column flex-md-row justify-content-between mb-5">
+                    <div class="resume-content">
+                        <h3 class="mb-0">Recebe os dados do GPS a cada mudança de local</h3>
+                        <p style="text-align: justify">
+                            Essa classe é responsável por pegar os dados do GPS a cada mudança de posição, nela precisamos implementar 
+                            o método onLocationChanged. Nesse método será responsável por recuprar sua posição atual de acordo 
+                            com a mudança de local.
+                        </p>
+                
+                        <div class="fundo-codigo">
+                            <p>
+                                <span class="public">public class</span> <span class="name-class"> MyLocation</span>
+                                <span class="public">implements</span> <span class="name-class"> LocationListener</span> {<br>
+        
+                                <p style="margin-left: 1%">
+                                    Context <span class="constant">context</span>;<br>
+                                    <span class="method">MyLocation</span>(Context context) {<br>
+                                        <p style="margin-left:5%">
+                                            <span class="public">this</span>.context = context;<br>
+                                            <span>LocationManager manager = (LocationManager) context.getSystemService(Context.<span class="constant">LOCATION_SERVICE</span>);</span><br>
+                                            <span class="public">if</span> (ActivityCompat.checkSelfPermission(context, Manifest.permission.<span class="constant">ACCESS_FINE_LOCATION</span>) !=<br>
+                                            PackageManager.<span class="constant">PERMISSION_GRANTED</span> && ActivityCompat.checkSelfPermission(context, Manifest.permission.<span class="constant">ACCESS_COARSE_LOCATION</span>)
+                                            != PackageManager.<span class="constant">PERMISSION_GRANTED</span>) {<span class="public">return</span> ;}<br>
+                                
+                                            <br>manager.requestLocationUpdates(LocationManager.<span class="constant">GPS_PROVIDER</span>, 0, 0, this);
+                                        </p>
+                                    <p style="margin-left:1%">}</p>
+                                </p>
+                                <p style="margin-left: 1%">
+                                    <span class="override"> @Override</span><br>
+                                    <span class="public">public void</span> <span class="method"> onLocationChanged</span>(Location location) {<br>
+                                    <span style="margin-left:5%">Toast.makeText(context, "LAT: "+location.getLatitude()+"\nLAG: "+location.getLongitude(), Toast.LENGTH_SHORT).show();</span><br>
+                                    }
+                                </p>
+                                }
+                            </p>
+                        </div>
+                    </div>
+                </div>
+            </div>
+    </section>
+    <hr class="m-0">
+
+    <!--mainActivity-->
+    <section class="resume-section p-3 p-lg-5 d-flex justify-content-center" id="experience">
+            <div class="w-100">
+                <h2 class="mb-5">MainActivity</h2>
+                <div class="resume-item d-flex flex-column flex-md-row justify-content-between mb-5">
+                    <div class="resume-content">
+                        <h3 class="mb-0">Classe principal</h3>
+                        <p style="text-align: justify">
+                            Em nossa classe principal vamos verificar se a localização do usuário esta ativada, caso não estiver, 
+                            deve aparecer uma mensagem em que o usuário poderá ativa-la.
+                        </p>
+                
+                        <div class="fundo-codigo">
+                            <p>
+                                <span class="public">public class</span> <span class="name-class"> MainActivity</span>
+                                <span class="public">extends</span> <span class="name-class"> AppCompatActivity</span> {
+                            </p>
+                            
+                            <p class="bloque">
+                                <span class="override"> @Override</span><br>
+                                <span class="public">public void</span> <span class="method"> onResume</span>() {<br>
+                                <span class="public bloque">if</span>(ContextCompat.checkSelfPermission(MainActivity.this, Manifest.permission.<span class="constant">ACCESS_FINE_LOCATION</span>) == <br>
+                                <span class="bloque1">PackageManager.<span class="constant">PERMISSION_DENIED</span>){<br>
+                                <span class=" public bloque1"> if</span>(Build.<span class="constant">VERSION.SDK_INT</span> >= Build.<span class="constant">VERSION_CODES.M</span>){<br>
+                                <span class="bloque2"> requestPermissions(new String[]{Manifest.permission.<span class="constant">ACCESS_FINE_LOCATION</span>}, 0);</span><br>
+                                <span class="bloque1">}</span><br>
+                                <span class="bloque">}</span><br>
+                                <span >}</span>
+                            </p>
+                        </div>
+                    </div>
+                </div>
+            </div>
+    </section>
+
+    <!--mainActivity-->
+    <section class="resume-section p-3 p-lg-5 d-flex justify-content-center" id="experience">
+        <div class="w-100">
+            <h2 class="mb-5">Manifest</h2>
+            <div class="resume-item d-flex flex-column flex-md-row justify-content-between mb-5">
+                <div class="resume-content">
+                    <h3 class="mb-0">Arquivo manifest</h3>
+                    <p style="text-align: justify">
+                        Aqui vamos configurar algumas permissões, e também configurar as classes de serviço e de broadcast, desta forma que reiniciar 
+                        o telefone o app será executado assim que seu boot for completo.
+                    </p>
+                    
+                    <img src="../img/manifest.PNG" alt="" width="800">
+                </div>
+            </div>
+        </div>
+    </section>
+
+    <section class="resume-section p-3 p-lg-5 d-flex align-items-center" id="interests">
+      <div class="w-100">
+        <h2 class="mb-5">Vídeo com tutorial</h2>
+        <iframe width="560" height="315" src="https://www.youtube.com/embed/SnT2feSuGGs" 
+        frameborder="0" 
+        allow="accelerometer; autoplay; encrypted-media; gyroscope; picture-in-picture" allowfullscreen></iframe>
+      </div>
+  </div>
+
+
+  <!-- Bootstrap core JavaScript -->
+  <script src="vendor/jquery/jquery.min.js"></script>
+  <script src="vendor/bootstrap/js/bootstrap.bundle.min.js"></script>
+
+  <!-- Plugin JavaScript -->
+  <script src="vendor/jquery-easing/jquery.easing.min.js"></script>
+
+  <!-- Custom scripts for this template -->
+  <script src="js/resume.min.js"></script>
+
+</body>
+
+</html>
