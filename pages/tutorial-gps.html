@@ -42,17 +42,25 @@
           <a class="nav-link js-scroll-trigger" href="#about">Introdução</a>
         </li>
         <li class="nav-item">
-          <a class="nav-link js-scroll-trigger" href="#experience">Experiência</a>
+          <a class="nav-link js-scroll-trigger" href="#experience">BroadcasTReceiver</a>
         </li>
         <li class="nav-item">
-          <a class="nav-link js-scroll-trigger" href="#education">Formação</a>
+          <a class="nav-link js-scroll-trigger" href="#education">Service</a>
         </li>
         <li class="nav-item">
-          <a class="nav-link js-scroll-trigger" href="#skills">Habilidades</a>
+          <a class="nav-link js-scroll-trigger" href="#skills">Location</a>
         </li>
         <li class="nav-item">
-          <a class="nav-link js-scroll-trigger" href="#interests">Tutorial</a>
+          <a class="nav-link js-scroll-trigger" href="#interests">MainPrincipal</a>
         </li>
+
+        <li class="nav-item">
+            <a class="nav-link js-scroll-trigger" href="#manifest">Manifest</a>
+          </li>
+
+          <li class="nav-item">
+              <a class="nav-link js-scroll-trigger" href="#video">Vídeo tutorial</a>
+            </li>
       </ul>
     </div>
   </nav>
@@ -108,7 +116,7 @@
     </section>
 
     <!--service-->
-    <section class="resume-section p-3 p-lg-5 d-flex justify-content-center" id="experience">
+    <section class="resume-section p-3 p-lg-5 d-flex justify-content-center" id="education">
         <div class="w-100">
             <h2 class="mb-5">Service</h2>
             <div class="resume-item d-flex flex-column flex-md-row justify-content-between mb-5">
@@ -120,21 +128,27 @@
                     </p>
             
                     <div class="fundo-codigo">
+                      <p>
                         <span class="public">public class</span> <span class="name-class"> MyService</span>
-                        <span class="public">extends</span> <span class="name-class"> Service</span> {<br>
+                        <span class="public">extends</span> <span class="name-class"> Service</span> {
+                      </p>
+                        
 
-                        <span class="override"> @Override</span><br>
-                        <span class="public">public IBinder</span> <span class="method"> onBind</span>(Context context) {
-                        <span class="public">return null;</span>}<br>
+                        <span class="override bloque"> @Override</span><br>
+                        <span class="public bloque">public IBinder</span> <span class="method"> onBind</span>(Context context) {
+                        <span class="public">return null;</span>}<br><br>
 
-                        <span class="override"> @Override</span><br>
-                        <span class="public">public void</span> <span class="method"> onCreate</span>() {<br>
-                        <span>MyNotification.pushNotification(getApplicationContext(), "App", "App rodando.");</span><br>
-                        <span class="public">new</span> MyLocation(getApplicationContext());</br>
+                        <span class="override bloque"> @Override</span><br>
+                        <span class="public bloque">public void</span> <span class="method"> onCreate</span>() {<br>
+                        <span class="bloque1">MyNotification.pushNotification(getApplicationContext(), "App", "App rodando.");</span><br>
+                        <span class="public bloque1">new</span> MyLocation(getApplicationContext());</br>
+                        <span class="bloque">}</span><br><br>
 
-                        <span class="override"> @Override</span><br>
-                        <span class="public">public void</span> <span class="method"> onDestroy</span>() {
+                        <span class="override bloque"> @Override</span><br>
+                        <span class="public bloque">public void</span> <span class="method"> onDestroy</span>() {
                         <span class="public">super</span>.onDestroy();}<br>
+
+                        <span class="">}</span>
                     </div>
                 </div>
             </div>
@@ -142,7 +156,7 @@
     </section>
 
     <!-- mylocation-->
-    <section class="resume-section p-3 p-lg-5 d-flex justify-content-center" id="experience">
+    <section class="resume-section p-3 p-lg-5 d-flex justify-content-center" id="skills">
             <div class="w-100">
                 <h2 class="mb-5">Location</h2>
                 <div class="resume-item d-flex flex-column flex-md-row justify-content-between mb-5">
@@ -189,7 +203,7 @@
     <hr class="m-0">
 
     <!--mainActivity-->
-    <section class="resume-section p-3 p-lg-5 d-flex justify-content-center" id="experience">
+    <section class="resume-section p-3 p-lg-5 d-flex justify-content-center" id="interests">
             <div class="w-100">
                 <h2 class="mb-5">MainActivity</h2>
                 <div class="resume-item d-flex flex-column flex-md-row justify-content-between mb-5">
@@ -224,7 +238,7 @@
     </section>
 
     <!--mainActivity-->
-    <section class="resume-section p-3 p-lg-5 d-flex justify-content-center" id="experience">
+    <section class="resume-section p-3 p-lg-5 d-flex justify-content-center" id="manifest">
         <div class="w-100">
             <h2 class="mb-5">Manifest</h2>
             <div class="resume-item d-flex flex-column flex-md-row justify-content-between mb-5">
@@ -241,7 +255,7 @@
         </div>
     </section>
 
-    <section class="resume-section p-3 p-lg-5 d-flex align-items-center" id="interests">
+    <section class="resume-section p-3 p-lg-5 d-flex align-items-center" id="video">
       <div class="w-100">
         <h2 class="mb-5">Vídeo com tutorial</h2>
         <iframe width="560" height="315" src="https://www.youtube.com/embed/SnT2feSuGGs" 
@@ -252,14 +266,14 @@
 
 
   <!-- Bootstrap core JavaScript -->
-  <script src="vendor/jquery/jquery.min.js"></script>
-  <script src="vendor/bootstrap/js/bootstrap.bundle.min.js"></script>
+  <script src="../vendor/jquery/jquery.min.js"></script>
+  <script src="../vendor/bootstrap/js/bootstrap.bundle.min.js"></script>
 
   <!-- Plugin JavaScript -->
-  <script src="vendor/jquery-easing/jquery.easing.min.js"></script>
+  <script src="../vendor/jquery-easing/jquery.easing.min.js"></script>
 
   <!-- Custom scripts for this template -->
-  <script src="js/resume.min.js"></script>
+  <script src="../js/resume.min.js"></script>
 
 </body>
 
