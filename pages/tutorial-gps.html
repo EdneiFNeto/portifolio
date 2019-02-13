@@ -48,8 +48,13 @@
           <a class="nav-link js-scroll-trigger" href="#education">Service</a>
         </li>
         <li class="nav-item">
-          <a class="nav-link js-scroll-trigger" href="#skills">Location</a>
+          <a class="nav-link js-scroll-trigger" href="#notification">Push Notification</a>
         </li>
+
+        <li class="nav-item">
+            <a class="nav-link js-scroll-trigger" href="#skills">Location</a>
+          </li>
+
         <li class="nav-item">
           <a class="nav-link js-scroll-trigger" href="#interests">MainPrincipal</a>
         </li>
@@ -67,6 +72,7 @@
 
   <div class="container-fluid p-0">
 
+    <!--introdução-->
     <section class="resume-section p-3 p-lg-5 d-flex align-items-center" id="about">
       <div class="w-100">
         <h1 class="mb-0">Android LocationManager
@@ -84,6 +90,7 @@
 
     <hr>
 
+    <!-- Broadcast --> 
     <section class="resume-section p-3 p-lg-5 d-flex justify-content-center" id="experience">
       <div class="w-100">
         <h2 class="mb-5">BroadcastReceiver</h2>
@@ -114,6 +121,8 @@
         </div>
       </div>
     </section>
+
+    <hr class="m-0">
 
     <!--service-->
     <section class="resume-section p-3 p-lg-5 d-flex justify-content-center" id="education">
@@ -154,6 +163,57 @@
             </div>
         </div>
     </section>
+
+    <hr class="m-0">
+
+    <!--push notifiction-->
+    <section class="resume-section p-3 p-lg-5 d-flex justify-content-center" id="notification">
+        <div class="w-100">
+            <h2 class="mb-5">Push Notification</h2>
+            <div class="resume-item d-flex flex-column flex-md-row justify-content-between mb-5">
+                <div class="resume-content">
+                    <h3 class="mb-0">Notificadno o usuario via push notification</h3>
+                    <p style="text-align: justify">
+                        Enviando notificação ao usuário assim que o serviço for ativado, desta forma podemos ver que o app,
+                        está sendo executado, tudo aqui acontece de forma bastante simples.
+                    </p>
+            
+                    <div class="fundo-codigo">
+                      <p>
+                        <span class="public">public class</span> <span class="name-class"> MyNotification{</span>
+                      </p>
+                        
+                        <span class="public bloque">public static void</span> <span class="method"> pushNotification
+
+                        </span>(Context context, String title, String texto) {<br>
+                        
+                        <span class="bloque1"> NotificationCompat.Builder mBuilder =</span><br>
+                        <span class="bloque1 public"> new </span>NotificationCompat.Builder(ctx)<br>
+                        <span class="bloque1">MyNotification.pushNotification(getApplicationContext(), "App", "App rodando.");</span><br>
+                        <span class="public bloque1">new</span> MyLocation(getApplicationContext());</br>
+                        <span class="bloque2">.setSmallIcon(R.mipmap.<span class="constant">ic_launcher</span>)</span><br>
+                        <span class="bloque2">.setContentTitle(title)</span><br>
+                        <span class="bloque2">.setContentText(texto);</span><br>
+                        
+                        <span class="bloque1">Intent resultIntent = new Intent(ctx, MainActivity.class);</span><br>
+                        <span class="bloque1">TaskStackBuilder stackBuilder = TaskStackBuilder.create(ctx);</span><br>
+                        <span class="bloque1">stackBuilder.addParentStack(MainActivity.class);</span><br>
+                        <span class="bloque1">stackBuilder.addNextIntent(resultIntent);</span><br>
+                        <span class="bloque1">PendingIntent resultPendingIntent =</span><br>
+                        <span class="bloque2">stackBuilder.getPendingIntent(0, PendingIntent.<span class="constant">FLAG_UPDATE_CURRENT</span></span><br>
+
+                        <span class="bloque1"></span>mBuilder.setContentIntent(resultPendingIntent);</span><br>
+                        <span class="bloque1">NotificationManager mNotificationManager =</span><br>
+                        <span class="bloque1">(NotificationManager) ctx.getSystemService(Context.<span class="constant">NOTIFICATION_SERVICE</span>);</span><br>
+                        <span class="bloque1">mNotificationManager.notify(01, mBuilder.build());</span><br>
+                        <span class="">}</span>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </section>
+
+    <hr class="m-0">
 
     <!-- mylocation-->
     <section class="resume-section p-3 p-lg-5 d-flex justify-content-center" id="skills">
@@ -200,6 +260,7 @@
                 </div>
             </div>
     </section>
+    
     <hr class="m-0">
 
     <!--mainActivity-->
@@ -237,6 +298,8 @@
             </div>
     </section>
 
+    <hr class="m-0">
+
     <!--mainActivity-->
     <section class="resume-section p-3 p-lg-5 d-flex justify-content-center" id="manifest">
         <div class="w-100">
@@ -255,13 +318,17 @@
         </div>
     </section>
 
+    <hr class="m-0">
+
+    <!-- video tutorial -->
     <section class="resume-section p-3 p-lg-5 d-flex align-items-center" id="video">
       <div class="w-100">
-        <h2 class="mb-5">Vídeo com tutorial</h2>
+        <h2 class="mb-5">Vídeo tutorial</h2>
         <iframe width="560" height="315" src="https://www.youtube.com/embed/SnT2feSuGGs" 
         frameborder="0" 
         allow="accelerometer; autoplay; encrypted-media; gyroscope; picture-in-picture" allowfullscreen></iframe>
       </div>
+    </section>
   </div>
 
 
